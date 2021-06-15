@@ -33,6 +33,9 @@
                             <constraint firstItem="VO9-gD-QY2" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="SGl-SZ-J2p"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="progressBar" destination="VO9-gD-QY2" id="zYD-vD-UXg"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

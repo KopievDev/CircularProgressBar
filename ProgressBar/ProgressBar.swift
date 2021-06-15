@@ -14,45 +14,30 @@ class ProgressBar: UIView {
     private var foregroundLayer: CAShapeLayer!
     private var textLayer: CATextLayer!
     
+    public var progress: CGFloat = 0 {
+        didSet {
+            didProgressUpdate()
+        }
+    }
+    
     // MARK: - Lifecycle
     override func draw(_ rect: CGRect) {
-        // Properties
-        let width = rect.width
-        let height = rect.height
-        
-        let lineWidth = 0.1 * min(width, height)
-        let center = CGPoint(x: width/2, y: height/2)
-        let radius = CGFloat(min(width, height) - lineWidth) / 2
-        let circularPath = UIBezierPath(arcCenter: center, radius: radius, startAngle: -CGFloat.pi/2, endAngle: CGFloat.pi + CGFloat.pi/2, clockwise: true)
-    
-        
-        backgroundLayer = createCircularLayer(rect: rect, strokeColor: .lightGray, fillColor: .clear, lineWidth: 20)
-        foregroundLayer = createCircularLayer(rect: rect, strokeColor: .red, fillColor: .clear, lineWidth: 20)
-        foregroundLayer.strokeEnd = 0.5
+        // Propertie
+        let lineWidth = 0.1 * min(rect.width, rect.height)
         // Setup layers
-//        backgroundLayer = CAShapeLayer() // Инициализация
-//        backgroundLayer.path = circularPath.cgPath // Путь
-//        backgroundLayer.strokeColor = UIColor.lightGray.cgColor // Цвет линии
-//        backgroundLayer.fillColor = UIColor.clear.cgColor // Цвет заливки
-//        backgroundLayer.lineWidth = lineWidth // Ширина линии
-//        backgroundLayer.lineCap = .round // Закругление линии
+        backgroundLayer = createCircularLayer(rect: rect,
+                                              strokeColor: .lightGray,
+                                              fillColor: .clear,
+                                              lineWidth: lineWidth)
+        foregroundLayer = createCircularLayer(rect: rect,
+                                              strokeColor: .red,
+                                              fillColor: .clear,
+                                              lineWidth: lineWidth)
+        foregroundLayer.strokeEnd = progress
+        textLayer = createTextLayer(rect: rect, textColor: .black)
+
         layer.addSublayer(backgroundLayer)
-        
-//        foregroundLayer = CAShapeLayer()
-//        foregroundLayer.path = circularPath.cgPath
-//        foregroundLayer.strokeColor = UIColor.red.cgColor
-//        foregroundLayer.fillColor = UIColor.clear.cgColor
-//        foregroundLayer.lineWidth = lineWidth
-//        foregroundLayer.lineCap = .round
-//        foregroundLayer.strokeEnd = 0.5
         layer.addSublayer(foregroundLayer)
-        
-        textLayer = CATextLayer()
-        textLayer.alignmentMode = .center
-        textLayer.fontSize = 20
-        textLayer.string = foregroundLayer.strokeEnd * 100
-        textLayer.borderColor = UIColor.black.cgColor
-        
         layer.addSublayer(textLayer)
         
         
@@ -78,5 +63,29 @@ class ProgressBar: UIView {
         shapeLayer.lineCap = .round // Закругление линии
         
         return shapeLayer
+    }
+    
+    private func createTextLayer(rect: CGRect, textColor: UIColor) -> CATextLayer {
+        let width = rect.width
+        let height = rect.height
+        
+        let fontSize = min(height, width) / 4
+        let offset = min(width, height) * 0.1
+        
+        let layer = CATextLayer()
+        layer.string = "\(Int(foregroundLayer.strokeEnd * 100))"
+        layer.backgroundColor = UIColor.clear.cgColor
+        layer.foregroundColor = textColor.cgColor
+        layer.fontSize = fontSize
+        layer.frame = CGRect(x: 0, y: (height-fontSize-offset)/2,
+                             width: width, height: fontSize+offset)
+        layer.alignmentMode = .center
+        return layer
+    }
+    
+    private func didProgressUpdate() {
+        textLayer.string = "\(Int(progress * 100))"
+        foregroundLayer.strokeEnd = progress
+        print("Debug \(foregroundLayer.strokeEnd)")
     }
 }
