@@ -10,9 +10,16 @@ import UIKit
 class ProgressBar: UIView {
 
     // MARK: - Properies
+    @IBInspectable public var backgroundCircleColor: UIColor = UIColor.lightGray
+    @IBInspectable public var starGradientColor: UIColor = UIColor.red
+    @IBInspectable public var endGradientColor: UIColor = UIColor.orange
+    @IBInspectable public var textColor: UIColor = UIColor.black
+
+    
     private var backgroundLayer: CAShapeLayer!
     private var foregroundLayer: CAShapeLayer!
     private var textLayer: CATextLayer!
+    private var gradientLayer: CAGradientLayer!
     
     public var progress: CGFloat = 0 {
         didSet {
@@ -26,7 +33,7 @@ class ProgressBar: UIView {
         let lineWidth = 0.1 * min(rect.width, rect.height)
         // Setup layers
         backgroundLayer = createCircularLayer(rect: rect,
-                                              strokeColor: .lightGray,
+                                              strokeColor: backgroundCircleColor,
                                               fillColor: .clear,
                                               lineWidth: lineWidth)
         foregroundLayer = createCircularLayer(rect: rect,
@@ -35,9 +42,16 @@ class ProgressBar: UIView {
                                               lineWidth: lineWidth)
         foregroundLayer.strokeEnd = progress
         textLayer = createTextLayer(rect: rect, textColor: .black)
-
+        
+        gradientLayer = CAGradientLayer()
+        gradientLayer.startPoint = CGPoint(x: 0.5, y: 0.0)
+        gradientLayer.endPoint = CGPoint(x: 0.5, y: 1)
+        gradientLayer.colors = [starGradientColor.cgColor, endGradientColor.cgColor]
+        gradientLayer.frame = rect
+        gradientLayer.mask = foregroundLayer
+        
         layer.addSublayer(backgroundLayer)
-        layer.addSublayer(foregroundLayer)
+        layer.addSublayer(gradientLayer)
         layer.addSublayer(textLayer)
         
         
