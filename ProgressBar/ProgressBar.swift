@@ -29,6 +29,8 @@ class ProgressBar: UIView {
     
     // MARK: - Lifecycle
     override func draw(_ rect: CGRect) {
+        
+        guard layer.sublayers == nil else {return}
         // Propertie
         let lineWidth = 0.1 * min(rect.width, rect.height)
         // Setup layers
