@@ -13,6 +13,7 @@
 		B5C6816F26787B3800CD550D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5C6816D26787B3800CD550D /* Main.storyboard */; };
 		B5C6817126787B3900CD550D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5C6817026787B3900CD550D /* Assets.xcassets */; };
 		B5C6817426787B3900CD550D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5C6817226787B3900CD550D /* LaunchScreen.storyboard */; };
+		B5C6817C26787B9600CD550D /* ProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C6817B26787B9600CD550D /* ProgressBar.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		B5C6817026787B3900CD550D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B5C6817326787B3900CD550D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B5C6817526787B3900CD550D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B5C6817B26787B9600CD550D /* ProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBar.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +60,7 @@
 			children = (
 				B5C6816726787B3800CD550D /* AppDelegate.swift */,
 				B5C6816926787B3800CD550D /* SceneDelegate.swift */,
+				B5C6817B26787B9600CD550D /* ProgressBar.swift */,
 				B5C6816B26787B3800CD550D /* ViewController.swift */,
 				B5C6816D26787B3800CD550D /* Main.storyboard */,
 				B5C6817026787B3900CD550D /* Assets.xcassets */,
@@ -139,6 +142,7 @@
 			files = (
 				B5C6816C26787B3800CD550D /* ViewController.swift in Sources */,
 				B5C6816826787B3800CD550D /* AppDelegate.swift in Sources */,
+				B5C6817C26787B9600CD550D /* ProgressBar.swift in Sources */,
 				B5C6816A26787B3800CD550D /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
