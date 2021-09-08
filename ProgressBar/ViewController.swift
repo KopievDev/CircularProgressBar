@@ -10,22 +10,10 @@ import UIKit
 class ViewController: UIViewController {
     
     @IBOutlet weak var progressBar: ProgressBar!
-    var count: CGFloat = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        Timer.scheduledTimer(withTimeInterval: 0.3, repeats: true) {[weak self] timer in
-            guard let `self` = self else {return}
-            self.count += 1
-            DispatchQueue.main.async {
-                self.progressBar.progress = min(0.02 * self.count, 1)
-                if self.progressBar.progress == 1 {
-                    timer.invalidate()
-                }
-            }
-        }
-        
+        progressBar.setProgress(to: 67, with: 0.05)
     }
     
     

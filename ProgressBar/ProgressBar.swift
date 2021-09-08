@@ -104,4 +104,16 @@ class ProgressBar: UIView {
         foregroundLayer.strokeEnd = progress
         print("Debug \(foregroundLayer.strokeEnd)")
     }
+    
+   public func setProgress(to value: Int, with timeDuration: TimeInterval) {
+        var count: CGFloat = 0
+        Timer.scheduledTimer(withTimeInterval: timeDuration, repeats: true) {[weak self] timer in
+            guard let `self` = self else {return}
+            count += 1
+            self.progress = min(0.01 * count, 1)
+            if  self.progress == CGFloat(value) * 0.01 {
+                timer.invalidate()
+            }
+        }
+    }
 }
