@@ -4,7 +4,6 @@
 class ViewController: UIViewController {
     
     @IBOutlet weak var progressBar: ProgressBar!
-    var count: CGFloat = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
